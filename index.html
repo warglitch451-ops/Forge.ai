@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090b12">
+<title>ForgeAI — AI Website Studio</title>
+<style>
+:root{--bg:#090b12;--panel:#111521;--panel2:#181e2d;--line:#292f42;--text:#f5f6fb;--muted:#9aa3b8;--gold:#e8bd65;--purple:#a78bfa;--green:#6ee7b7;--red:#fb7185}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer;border:1px solid var(--line);border-radius:9px;background:#1b2233;color:var(--text);padding:9px 12px;transition:border-color .15s,background .15s}button:hover{border-color:#7a86a5}button:disabled{opacity:.5;cursor:wait}.primary{background:var(--gold);color:#181207;border-color:var(--gold);font-weight:750}.app{min-height:100vh}.top{height:auto;min-height:66px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 17px;background:#0d1019;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}.brand{font-size:20px;font-weight:900;letter-spacing:-.7px}.brand span{color:var(--gold)}.muted{color:var(--muted)}.tiny{font-size:11px}.actions{display:flex;gap:6px;flex-wrap:wrap}.layout{display:grid;grid-template-columns:270px minmax(0,1fr);min-height:calc(100vh - 66px)}.side{border-right:1px solid var(--line);padding:13px;display:flex;flex-direction:column;gap:8px;background:#0c0f18;min-width:0}.nav{width:100%;text-align:left;background:transparent;border-color:transparent;color:#b3bbce}.nav.active{background:#252139;border-color:#40375c;color:white}.sidebottom{margin-top:auto;border:1px solid var(--line);border-radius:10px;padding:10px;color:var(--muted);font-size:11px}.main{min-width:0;padding:16px;display:flex;flex-direction:column;gap:13px}.heading{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.heading h1{font-size:21px;margin:0}.panel{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:14px;min-width:0}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:block;color:var(--muted);font-size:12px;margin:10px 0 6px}input,textarea,select{width:100%;padding:10px;background:#090d16;border:1px solid var(--line);border-radius:9px;color:var(--text);outline:none}input:focus,textarea:focus,select:focus{border-color:var(--gold)}textarea{resize:vertical;min-height:90px}#code{min-height:58vh;font:12px/1.55 ui-monospace,SFMono-Regular,Consolas,monospace;tab-size:2}.hidden{display:none!important}.badge{display:inline-block;border:1px solid var(--line);border-radius:99px;padding:4px 8px;color:var(--muted);font-size:10px}.editorgrid{display:grid;grid-template-columns:minmax(300px,43%) minmax(0,1fr);gap:13px;min-height:70vh}.editorleft,.editorright{min-width:0;display:flex;flex-direction:column;gap:10px}.tabs{display:flex;gap:6px}.tabs button{flex:1}.tabs button.active{background:#29233c;border-color:#66558f}.chatlog{height:34vh;min-height:200px;max-height:430px;overflow:auto;display:flex;flex-direction:column;gap:8px;background:#090d16;border:1px solid var(--line);padding:10px;border-radius:10px}.msg{padding:9px 11px;border-radius:10px;max-width:97%;white-space:pre-wrap;overflow-wrap:anywhere}.msg.user{align-self:flex-end;background:#302744}.msg.ai{align-self:flex-start;background:#171e2c}.chatrow{display:flex;gap:7px}.chatrow textarea{min-height:70px;flex:1}.chatrow button{align-self:stretch}.previewbar{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}.previewwrap{background:#e5e7eb;border-radius:10px;overflow:auto;min-height:60vh;display:flex;justify-content:center;align-items:stretch;padding:0}.previewwrap iframe{width:100%;height:68vh;min-height:500px;border:0;background:white;transition:width .2s}.previewwrap.tablet iframe{width:768px;max-width:100%}.previewwrap.mobile iframe{width:390px;max-width:100%}.status{font-size:11px;color:var(--muted);min-height:17px}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.project{background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:13px;min-width:0}.project h3{margin:0 0 5px;font-size:14px;overflow-wrap:anywhere}.project p{font-size:11px;color:var(--muted)}.project .actions button{font-size:11px;padding:7px}.empty{border:1px dashed var(--line);border-radius:12px;padding:22px;text-align:center;color:var(--muted)}.warning{border:1px solid #5b4827;background:#2a2114;color:#f5d69b;padding:10px;border-radius:10px;font-size:11px}.idearesult{white-space:pre-wrap;line-height:1.65;overflow-wrap:anywhere}.quick{display:flex;gap:6px;flex-wrap:wrap}.quick button{font-size:11px}.filelabel{display:inline-flex;align-items:center;justify-content:center;padding:9px 12px;border:1px solid var(--line);border-radius:9px;cursor:pointer;background:#1b2233;font-size:12px}.filelabel input{display:none}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{padding:12px;background:var(--panel2);border:1px solid var(--line);border-radius:10px}.stat b{font-size:20px;display:block}.stat span{font-size:11px;color:var(--muted)}@media(max-width:1050px){.layout{grid-template-columns:210px minmax(0,1fr)}.editorgrid{grid-template-columns:1fr}.previewwrap iframe{height:62vh}.chatlog{height:260px}}@media(max-width:700px){.top{align-items:flex-start;padding:10px}.brand{font-size:18px}.layout{grid-template-columns:1fr}.side{border-right:0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr);gap:5px;padding:8px}.side .nav{font-size:11px;text-align:center;padding:8px 4px}.sidebottom{display:none}.main{padding:10px}.grid2{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}.previewwrap iframe{min-height:480px;height:60vh}.actions button{padding:8px;font-size:11px}.heading h1{font-size:19px}.stats{grid-template-columns:repeat(3,1fr)}}@media(max-width:420px){.cards{grid-template-columns:1fr}.top .tiny{display:none}.chatrow{flex-direction:column}.chatrow button{width:100%}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top">
+ <div><div class="brand">FORGE<span>AI</span></div><div class="tiny muted">Build · Edit · Preview · Export</div></div>
+ <div class="actions"><button id="undo">↶ Undo</button><button id="redo">↷ Redo</button><button id="save" class="primary">Save project</button></div>
+</header>
+<div class="layout">
+<aside class="side">
+ <button class="nav active" data-page="studio">✦ AI Website Studio</button>
+ <button class="nav" data-page="projects">▦ Projects</button>
+ <button class="nav" data-page="ideas">◇ Business Idea Lab</button>
+ <button class="nav" data-page="settings">⚙ AI Settings</button>
+ <button class="nav" data-page="export">↗ Export & Backup</button>
+ <button id="newProject">＋ New project</button>
+ <div class="sidebottom"><b>FORGEAI WORKSPACE</b><p id="projectCount">1 saved project</p><span>Local browser storage<br>Prototype mode</span></div>
+</aside>
+<main class="main">
+<section id="page-studio">
+ <div class="heading"><div><h1>AI Website Studio</h1><div class="muted tiny">Prompt it, edit it, and see changes live.</div></div><span class="badge" id="activeName">Benne Restaurant</span></div>
+ <div class="panel">
+  <div class="grid2">
+   <div><label class="field" for="projectName">Project name</label><input id="projectName" value="Benne Restaurant"></div>
+   <div><label class="field" for="category">Website type</label><select id="category"><option>Restaurant</option><option>E-commerce</option><option>Portfolio</option><option>Agency</option><option>SaaS / Startup</option><option>Landing page</option><option>Blog / Magazine</option><option>Other</option></select></div>
+  </div>
+  <label class="field" for="brief">What do you want to build?</label>
+  <textarea id="brief" placeholder="Describe your website, style, features, audience, and goals...">Create a premium South Indian restaurant website for Benne with a luxury dark espresso and gold theme, beautiful food imagery, menu cards, restaurant story, location, mobile-friendly layout, SEO metadata, and subtle 2D dosa animation.</textarea>
+  <div class="quick" style="margin-top:9px"><button id="generate" class="primary">Generate website ✦</button><button id="starter">Load starter website</button><button id="clearBrief">Clear brief</button></div>
+ </div>
+ <div class="editorgrid">
+  <section class="editorleft panel">
+   <div class="tabs"><button id="chatTab" class="active">AI Chat</button><button id="codeTab">Manual Code</button></div>
+   <div id="chatPane">
+    <div class="muted tiny" style="margin-bottom:8px">Ask for a change to your current website. Example: “Add a 2D dosa animation and make the menu more premium.”</div>
+    <div id="chatlog" class="chatlog"><div class="msg ai">Welcome to ForgeAI! Your starter website is ready. Ask me to change the design, add sections, improve mobile layout, or create animations.</div></div>
+    <label class="field" for="chatInput">Your instruction</label>
+    <div class="chatrow"><textarea id="chatInput" placeholder="Make the hero more premium..."></textarea><button id="send" class="primary">Send ↗</button></div>
+    <div class="quick"><button data-prompt="Make the design feel more luxurious with editorial typography, refined spacing, and a rich premium palette.">Luxury upgrade</button><button data-prompt="Add original 2D CSS/SVG animations, floating ingredients, and prefers-reduced-motion support.">2D animation</button><button data-prompt="Improve mobile responsiveness, navigation, accessibility, and page speed.">Fix mobile</button><button data-prompt="Add SEO title, meta description, Open Graph tags, and semantic headings.">SEO upgrade</button></div>
+   </div>
+   <div id="codePane" class="hidden">
+    <div class="muted tiny">Edit the full HTML document, including embedded CSS and JavaScript. Tap Run Preview to apply.</div>
+    <textarea id="code" spellcheck="false" aria-label="HTML code editor"></textarea>
+    <div class="quick"><button id="run" class="primary">Run Preview</button><button id="format">Tidy spacing</button><button id="insertImage">Insert uploaded image</button><label class="filelabel">Upload image<input id="imageFile" type="file" accept="image/*"></label></div>
+    <div class="muted tiny">Image insertion embeds the image as a data URL, which can make the HTML file larger.</div>
+   </div>
+  </section>
+  <section class="editorright panel">
+   <div class="previewbar"><div><b>Live Preview</b><div class="muted tiny">Sandboxed website preview</div></div><div class="actions"><button data-size="desktop" class="sizeBtn primary">Desktop</button><button data-size="tablet" class="sizeBtn">Tablet</button><button data-size="mobile" class="sizeBtn">Mobile</button><button id="refresh">Refresh</button></div></div>
+   <div id="previewWrap" class="previewwrap"><iframe id="preview" title="Website preview" sandbox="allow-scripts allow-forms allow-modals allow-popups"></iframe></div>
+   <div id="status" class="status" role="status">Ready.</div>
+  </section>
+ </div>
+</section>
+<section id="page-projects" class="hidden">
+ <div class="heading"><div><h1>Projects</h1><div class="muted tiny">Manage websites saved on this device.</div></div><button id="createProject" class="primary">＋ New project</button></div>
+ <div id="projectsGrid" class="cards"></div>
+ <div class="warning" style="margin-top:12px">Projects are stored in this browser only. Clearing browser data may remove them. Export a JSON backup to keep a copy.</div>
+</section>
+<section id="page-ideas" class="hidden">
+ <div class="heading"><div><h1>Business Idea Lab</h1><div class="muted tiny">Explore startup ideas, customers, MVPs, and ways to validate them.</div></div><span class="badge">AI-powered when configured</span></div>
+ <div class="panel">
+  <label class="field" for="ideaNiche">Your interests, skills, or industry</label><input id="ideaNiche" placeholder="Example: AI tools, restaurants, student productivity">
+  <div class="grid2"><div><label class="field" for="ideaBudget">Starting budget</label><select id="ideaBudget"><option>Almost zero budget</option><option>Under ₹5,000</option><option>₹5,000–₹25,000</option><option>₹25,000+</option></select></div><div><label class="field" for="ideaMode">Idea type</label><select id="ideaMode"><option>Digital product or AI tool</option><option>Service business</option><option>Marketplace</option><option>Mobile app</option><option>Any practical business</option></select></div></div>
+  <button id="makeIdeas" class="primary" style="margin-top:12px">Generate practical ideas</button>
+  <div id="ideaResult" class="idearesult muted" style="margin-top:16px">Your business ideas will appear here. Each idea should include the target customer, problem, MVP, validation test, and likely risks.</div>
+ </div>
+</section>
+<section id="page-settings" class="hidden">
+ <div class="heading"><div><h1>AI Settings</h1><div class="muted tiny">Configure Gemini for private prototype testing.</div></div></div>
+ <div class="panel">
+  <label class="field" for="apiKey">Gemini API key</label><div class="actions"><input id="apiKey" type="password" placeholder="Paste API key for this session only" style="flex:1;min-width:180px"><button id="toggleKey">Show</button><button id="forgetKey">Forget key</button></div>
+  <label class="field" for="model">Model</label><select id="model"><option value="gemini-2.5-flash">gemini-2.5-flash — fast model</option><option value="gemini-2.0-flash">gemini-2.0-flash — alternate</option></select>
+  <label class="field" for="backend">Secure backend endpoint (optional)</label><input id="backend" placeholder="https://your-server.example/api/generate">
+  <p class="muted tiny">If configured, the endpoint should accept JSON containing {prompt, currentHtml, mode} and return {text} or {html}. Implement authentication and rate limits on the server.</p>
+  <div class="warning">Never commit a real API key into a public GitHub repository or hardcode it in this HTML. Browser API calls are for prototyping only; public and commercial deployments should use a secure backend. <a href="https://ai.google.dev/gemini-api/docs/api-key" target="_blank" rel="noreferrer" style="color:#f5d69b">Key security guidance</a>.</div>
+  <button id="testAI" style="margin-top:12px">Test AI connection</button>
+ </div>
+</section>
+<section id="page-export" class="hidden">
+ <div class="heading"><div><h1>Export & Backup</h1><div class="muted tiny">Download your site or back up your workspace.</div></div></div>
+ <div class="panel">
+  <h3>Website</h3><p class="muted tiny">Download the active project as a standalone HTML file.</p><button id="exportHtml" class="primary">Download website HTML</button>
+  <hr style="border:0;border-top:1px solid var(--line);margin:20px 0">
+  <h3>Workspace backup</h3><p class="muted tiny">Export all saved projects as a JSON backup or restore from a previous backup.</p>
+  <div class="actions"><button id="exportJson">Download project backup</button><label class="filelabel">Import backup<input id="importJson" type="file" accept=".json,application/json"></label></div>
+  <hr style="border:0;border-top:1px solid var(--line);margin:20px 0">
+  <h3>Quick project summary</h3><div id="summary" class="muted tiny"></div>
+ </div>
+</section>
+</main>
+</div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const STORE='forgeai_workspace_v3';
+const starter=`<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Benne — South Indian Dining</title>
+<meta name="description" content="Discover the art of South Indian dining at Benne. Traditional dosa, crafted with care.">
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#17100c;color:#f8efdf;font-family:Georgia,'Times New Roman',serif}nav{display:flex;justify-content:space-between;align-items:center;padding:22px 7%;border-bottom:1px solid #5b422b;position:sticky;top:0;background:#17100cf2;z-index:2}.logo{font-size:27px;letter-spacing:7px;color:#e8c779}nav a{color:#f8efdf;text-decoration:none;margin-left:20px;font:12px Arial;letter-spacing:1px}.hero{min-height:78vh;padding:70px 8%;display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:center;background:radial-gradient(ellipse at 75% 45%,#58331b,#17100c 58%)}.eyebrow{color:#e8c779;letter-spacing:4px;font:11px Arial;text-transform:uppercase}.hero h1{font-size:clamp(42px,6vw,82px);line-height:.98;font-weight:400;margin:18px 0}.hero p{color:#d0bd9e;line-height:1.8;max-width:470px}.btn{display:inline-block;background:#e8c779;color:#21160c;text-decoration:none;padding:14px 20px;margin:14px 10px 0 0;font:11px Arial;letter-spacing:2px}.food{min-height:320px;border:1px solid #a27a43;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,#d7a65a,#7d451f 40%,#25150e 69%);box-shadow:0 0 70px #a5672940;position:relative;animation:float 5s ease-in-out infinite}.dosa{width:70%;aspect-ratio:1.35;border-radius:50% 50% 44% 44%;background:radial-gradient(ellipse,#f7d58a 0 38%,#b96b27 45%,#e4a34e 58%,#5e2c13 68%,transparent 70%);transform:rotate(-12deg);box-shadow:0 15px 30px #10080580}.leaf{position:absolute;width:26px;height:13px;background:#6d8a3c;border-radius:100% 0 100% 0;animation:leaf 6s ease-in-out infinite}.leaf.one{top:20%;left:18%}.leaf.two{right:15%;bottom:23%;animation-delay:-2s}@keyframes float{50%{transform:translateY(-12px) rotate(2deg)}}@keyframes leaf{50%{transform:translate(10px,-12px) rotate(30deg)}}section.content{padding:80px 8%;text-align:center}h2{font-size:clamp(30px,4vw,50px);font-weight:400;margin:12px 0 24px}.muted{color:#c8b89e;line-height:1.8;max-width:700px;margin:0 auto}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:35px;text-align:left}.card{padding:24px;border:1px solid #5b422b;background:#20150f}.card h3{color:#e8c779;font-weight:400}.price{color:#e8c779}.menuicon{font-size:36px;color:#e8c779}footer{padding:35px;text-align:center;border-top:1px solid #5b422b;color:#c8b89e}@media(max-width:700px){nav{padding:17px 5%}nav a{margin-left:9px;font-size:10px}.hero{grid-template-columns:1fr;padding:55px 7%}.food{min-height:230px}.cards{grid-template-columns:1fr}.content{padding:55px 7%!important}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important}}
+</style></head><body>
+<nav><div class="logo">BENNE</div><div><a href="#story">OUR STORY</a><a href="#menu">MENU</a><a href="#visit">VISIT</a></div></nav>
+<main><section class="hero"><div><div class="eyebrow">Artisanal South Indian Dining</div><h1>The art of<br><em>the perfect dosa.</em></h1><p>A celebration of Karnataka’s beloved benne dosa — crisp at the edges, buttery at heart, and made to be remembered.</p><a class="btn" href="#menu">EXPLORE THE MENU</a><a class="btn" href="#visit">RESERVE A TABLE</a></div><div class="food" aria-label="Stylized dosa illustration"><div class="dosa"></div><i class="leaf one"></i><i class="leaf two"></i></div></section>
+<section class="content" id="story"><div class="eyebrow">Our philosophy</div><h2>Rooted in tradition.<br>Made for today.</h2><p class="muted">At Benne, every dosa begins with time-honoured craft, carefully fermented batter, golden butter, and a deep love for South Indian food culture.</p></section>
+<section class="content" id="menu"><div class="eyebrow">From our kitchen</div><h2>Signature plates</h2><div class="cards"><article class="card"><div class="menuicon">✳</div><h3>Classic Benne Dosa</h3><p class="muted">Golden, crisp, buttery and beautifully simple.</p><p class="price">₹180</p></article><article class="card"><div class="menuicon">✺</div><h3>Mysore Masala Dosa</h3><p class="muted">Spiced red chutney, warm potato masala, crisp edges.</p><p class="price">₹230</p></article><article class="card"><div class="menuicon">✧</div><h3>Thatte Idli</h3><p class="muted">Soft, cloud-like idli served with house chutneys.</p><p class="price">₹150</p></article></div></section>
+<section class="content" id="visit"><div class="eyebrow">Come sit with us</div><h2>Your table is waiting.</h2><p class="muted">Replace this text with your real address, opening hours, and reservation link.</p><a class="btn" href="mailto:hello@example.com">CONTACT BENNE</a></section></main><footer>BENNE · ARTISANAL SOUTH INDIAN DINING</footer></body></html>`;
+let workspace=loadWorkspace(),activeId=workspace.activeId;
+let history=[],future=[],busy=false,chatHistory=[];
+function uid(){return 'p'+Date.now().toString(36)+Math.random().toString(36).slice(2,7)}
+function newProject(name='Untitled Website',html=starter){return {id:uid(),name,category:'Landing page',html,created:Date.now(),updated:Date.now()}}
+function loadWorkspace(){try{const w=JSON.parse(localStorage.getItem(STORE));if(w&&Array.isArray(w.projects)&&w.projects.length)return w}catch(e){}const p={id:uid(),name:'Benne Restaurant',category:'Restaurant',html:starter,created:Date.now(),updated:Date.now()};return {projects:[p],activeId:p.id}}
+function saveWorkspace(){try{localStorage.setItem(STORE,JSON.stringify(workspace));$('projectCount').textContent=workspace.projects.length+' saved project'+(workspace.projects.length===1?'':'s')}catch(e){setStatus('Storage is full. Export a backup or reduce embedded image sizes.')}}
+function project(){return workspace.projects.find(p=>p.id===activeId)||workspace.projects[0]}
+function setStatus(t){$('status').textContent=t}
+function setCode(html,push=true){if(push&&html!==$('code').value){history.push($('code').value);if(history.length>30)history.shift();future=[]} $('code').value=html;project().html=html;project().updated=Date.now();$('preview').srcdoc=html;saveWorkspace();updateHeader();updateSummary()}
+function render(){setCode($('code').value,true);setStatus('Preview refreshed.')}
+function updateHeader(){$('projectName').value=project().name;$('category').value=project().category||'Other';$('activeName').textContent=project().name}
+function switchPage(page){document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));['studio','projects','ideas','settings','export'].forEach(p=>$('page-'+p).classList.toggle('hidden',p!==page));if(page==='projects')drawProjects();if(page==='export')updateSummary()}
+function switchTab(tab){$('chatPane').classList.toggle('hidden',tab!=='chat');$('codePane').classList.toggle('hidden',tab!=='code');$('chatTab').classList.toggle('active',tab==='chat');$('codeTab').classList.toggle('active',tab==='code')}
+function addMsg(t,role='ai'){let d=document.createElement('div');d.className='msg '+role;d.textContent=t;$('chatlog').appendChild(d);$('chatlog').scrollTop=$('chatlog').scrollHeight;return d}
+function saveCurrent(){project().name=$('projectName').value.trim()||'Untitled Website';project().category=$('category').value;project().html=$('code').value;project().updated=Date.now();saveWorkspace();updateHeader();setStatus('Project saved on this device.')}
+function activateProject(id){saveCurrent();activeId=id;workspace.activeId=id;history=[];future=[];chatHistory=[];$('chatlog').innerHTML='';addMsg('Project opened. Ask me to edit it, or switch to Manual Code.');$('code').value=project().html;$('preview').srcdoc=project().html;updateHeader();saveWorkspace();switchPage('studio');setStatus('Opened '+project().name)}
+function makeProject(){saveCurrent();const p=newProject('New Website');workspace.projects.unshift(p);activeId=p.id;workspace.activeId=activeId;history=[];future=[];$('code').value=p.html;$('brief').value='Create a modern, polished, responsive website for '+p.name+'. Include a strong hero, clear calls to action, useful content, and a professional visual identity.';$('chatlog').innerHTML='';addMsg('New project created. Describe what you want to build.');$('preview').srcdoc=p.html;updateHeader();saveWorkspace();switchPage('studio')}
+function drawProjects(){const root=$('projectsGrid');root.innerHTML='';workspace.projects.forEach(p=>{const d=document.createElement('article');d.className='project';const h=document.createElement('h3');h.textContent=p.name;const desc=document.createElement('p');desc.textContent=(p.category||'Website')+' · Updated '+new Date(p.updated).toLocaleDateString();const a=document.createElement('div');a.className='actions';[['Open',()=>activateProject(p.id)],['Rename',()=>{const n=prompt('Project name',p.name);if(n&&n.trim()){p.name=n.trim();saveWorkspace();drawProjects();updateHeader()}}],['Duplicate',()=>{const cp={...p,id:uid(),name:p.name+' copy',created:Date.now(),updated:Date.now()};workspace.projects.unshift(cp);saveWorkspace();drawProjects()}],['Delete',()=>{if(workspace.projects.length===1){alert('Keep at least one project.');return}if(confirm('Delete '+p.name+'?')){workspace.projects=workspace.projects.filter(x=>x.id!==p.id);if(activeId===p.id)activeId=workspace.projects[0].id;workspace.activeId=activeId;saveWorkspace();$('code').value=project().html;$('preview').srcdoc=project().html;updateHeader();drawProjects()}}]].forEach(([label,fn])=>{const b=document.createElement('button');b.textContent=label;b.onclick=fn;a.appendChild(b)});d.append(h,desc,a);root.appendChild(d)});if(!workspace.projects.length)root.innerHTML='<div class="empty">No projects yet. Create one to get started.</div>'}
+function updateSummary(){$('summary').textContent=`Active project: ${project().name} · Type: ${project().category||'Website'} · HTML size: ${new Blob([project().html]).size.toLocaleString()} bytes · Saved projects: ${workspace.projects.length}.`}
+function undo(){if(!history.length){setStatus('Nothing to undo.');return}future.push($('code').value);$('code').value=history.pop();setCode($('code').value,false);setStatus('Undo complete.')}
+function redo(){if(!future.length){setStatus('Nothing to redo.');return}history.push($('code').value);$('code').value=future.pop();setCode($('code').value,false);setStatus('Redo complete.')}
+function extractHtml(s){s=s.trim().replace(/^```(?:html)?\s*/i,'').replace(/\s*```$/,'').trim();const low=s.toLowerCase(),a=low.indexOf('<!doctype html'),b=low.indexOf('<html');const i=a>=0?a:b;return i>=0?s.slice(i):s}
+async function callAI(prompt,mode='edit'){
+ if(busy)return;const key=$('apiKey').value.trim(),backend=$('backend').value.trim();if(!backend&&!key){switchPage('settings');setStatus('Add a Gemini API key or backend endpoint in AI Settings.');return}
+ busy=true;setStatus('AI is working…');let resultBox=null;
+ try{
+  const current=$('code').value;
+  const instruction=mode==='ideas'
+  ?`You are a realistic startup advisor. Generate 5 practical business ideas for this user. For each: customer, painful problem, simple MVP, first validation experiment, monetization, risks, and a 7-day action plan. Do not promise income or claim an idea is unique without evidence. Context: ${prompt}`
+  :`You are ForgeAI, an expert frontend engineer. Task: ${prompt}\nReturn ONLY a complete valid HTML document from <!DOCTYPE html> to </html>. Include all CSS and JS inline. Preserve working sections and existing content unless asked to change them. Never return a partial snippet or markdown. The page must have visible body content, mobile responsiveness, accessible controls, polished visual hierarchy, and no blank hero. Do not claim real payment, login, booking, or database integrations unless actually implemented. Keep output concise and avoid unnecessary libraries.\nCURRENT HTML:\n${current}`;
+  let text='';
+  if(backend){
+   const r=await fetch(backend,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:instruction,currentHtml:current,mode})});
+   const d=await r.json();if(!r.ok)throw Error(d.error||'Backend request failed');text=d.html||d.text||d.result||'';
+  }else{
+   const model=$('model').value;
+   const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`,{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':key},body:JSON.stringify({contents:[{role:'user',parts:[{text:instruction}]}],generationConfig:{temperature:.35,maxOutputTokens:mode==='ideas'?2500:10000}})});
+   const d=await r.json();if(!r.ok)throw Error(d?.error?.message||'Gemini request failed ('+r.status+')');
+   text=(d.candidates||[]).flatMap(c=>c.content?.parts||[]).map(p=>p.text||'').join('\n');
+  }
+  if(!text.trim())throw Error('AI returned an empty response. Try a shorter request.');
+  if(mode==='ideas'){$('ideaResult').textContent=text;setStatus('Business ideas generated.');return}
+  const html=extractHtml(text);
+  if(!html.toLowerCase().includes('<html')||!html.toLowerCase().includes('</html>'))throw Error('AI did not return a complete HTML document. Try asking for fewer changes.');
+  setCode(html,true);setStatus('AI edit applied. Review it in the preview before exporting.');
+ }catch(e){setStatus('AI error: '+e.message);if(mode==='ideas')$('ideaResult').textContent='Could not generate ideas: '+e.message;else addMsg('I could not apply that edit: '+e.message,'ai')}
+ finally{busy=false;$('send').disabled=false;$('generate').disabled=false;$('makeIdeas').disabled=false;$('send').textContent='Send ↗';$('generate').textContent='Generate website ✦';$('makeIdeas').textContent='Generate practical ideas'}
+}
+function download(name,content,type){const blob=new Blob([content],{type});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+function slug(s){return (s||'website').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'website'}
+document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>switchPage(b.dataset.page));
+$('newProject').onclick=makeProject;$('createProject').onclick=makeProject;$('chatTab').onclick=()=>switchTab('chat');$('codeTab').onclick=()=>switchTab('code');
+$('run').onclick=render;$('refresh').onclick=render;$('save').onclick=saveCurrent;$('undo').onclick=undo;$('redo').onclick=redo;
+$('projectName').onchange=()=>{project().name=$('projectName').value.trim()||'Untitled Website';updateHeader();saveWorkspace()};
+$('category').onchange=()=>{project().category=$('category').value;saveWorkspace()};
+$('starter').onclick=()=>{if(confirm('Load the starter website and replace current code?'))setCode(starter,true)};
+$('clearBrief').onclick=()=>{$('brief').value=''};
+$('generate').onclick=()=>{const prompt=$('brief').value.trim();if(!prompt)return setStatus('Write a website brief first.');$('generate').disabled=true;$('generate').textContent='Generating…';callAI('Create a complete website for project "'+$('projectName').value+'" (type: '+$('category').value+'). User brief: '+prompt,'edit')};
+$('send').onclick=()=>{const p=$('chatInput').value.trim();if(!p)return;addMsg(p,'user');$('chatInput').value='';$('send').disabled=true;$('send').textContent='…';callAI(p,'edit')};
+$('chatInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();$('send').click()}});
+document.querySelectorAll('[data-prompt]').forEach(b=>b.onclick=()=>{$('chatInput').value=b.dataset.prompt;$('chatInput').focus()});
+document.querySelectorAll('[data-size]').forEach(b=>b.onclick=()=>{$('previewWrap').classList.remove('mobile','tablet');if(b.dataset.size!=='desktop')$('previewWrap').classList.add(b.dataset.size);document.querySelectorAll('.sizeBtn').forEach(x=>x.classList.toggle('primary',x===b))});
+$('exportHtml').onclick=()=>download(slug(project().name)+'.html',$('code').value,'text/html;charset=utf-8');
+$('exportJson').onclick=()=>{saveCurrent();download('forgeai-backup.json',JSON.stringify(workspace,null,2),'application/json')};
+$('importJson').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const w=JSON.parse(await f.text());if(!Array.isArray(w.projects)||!w.projects.length)throw Error('Backup does not contain projects');workspace=w;activeId=w.activeId||w.projects[0].id;saveWorkspace();$('code').value=project().html;$('preview').srcdoc=project().html;updateHeader();drawProjects();setStatus('Backup imported.')}catch(err){alert('Could not import backup: '+err.message)}e.target.value=''};
+$('toggleKey').onclick=()=>{$('apiKey').type=$('apiKey').type==='password'?'text':'password';$('toggleKey').textContent=$('apiKey').type==='password'?'Show':'Hide'};
+$('forgetKey').onclick=()=>{$('apiKey').value='';setStatus('API key cleared from this page session.')};
+$('testAI').onclick=async()=>{const key=$('apiKey').value.trim();if($('backend').value.trim()){setStatus('Backend set. Test it by generating a small website edit.');return}if(!key){setStatus('Add a key first.');return}setStatus('Testing Gemini connection…');try{const r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/'+encodeURIComponent($('model').value)+':generateContent',{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':key},body:JSON.stringify({contents:[{parts:[{text:'Reply with exactly: ForgeAI connection works'}]}],generationConfig:{maxOutputTokens:20}})});const d=await r.json();if(!r.ok)throw Error(d?.error?.message||'Request failed');setStatus('Connected: '+((d.candidates||[]).flatMap(c=>c.content?.parts||[]).map(p=>p.text||'').join(' ')||'API responded'))}catch(e){setStatus('Connection failed: '+e.message)}};
+$('makeIdeas').onclick=()=>{const niche=$('ideaNiche').value.trim()||'practical digital businesses';$('makeIdeas').disabled=true;$('makeIdeas').textContent='Thinking…';$('ideaResult').textContent='Generating practical ideas…';callAI('Interests/industry: '+niche+'; Budget: '+$('ideaBudget').value+'; Preferred type: '+$('ideaMode').value,'ideas')};
+$('format').onclick=()=>{$('code').value=$('code').value.replace(/>\s*</g,'>\n<').replace(/\n{3,}/g,'\n\n');setStatus('Basic spacing added. Run Preview to apply.');};
+$('imageFile').onchange=async e=>{const f=e.target.files[0];if(!f)return;if(f.size>2*1024*1024){alert('For speed, choose an image under 2 MB.');e.target.value='';return}const data=await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(f)});window.uploadedImage=data;setStatus('Image loaded. Tap Insert uploaded image where you want it.');e.target.value=''};
+$('insertImage').onclick=()=>{if(!window.uploadedImage)return alert('Upload an image first.');const tag='<img src="'+window.uploadedImage+'" alt="Uploaded website image" style="max-width:100%;height:auto;border-radius:16px">';const el=$('code');const a=el.selectionStart,b=el.selectionEnd;el.setRangeText(tag,a,b,'end');setStatus('Image tag inserted. Run Preview to see it.')};
+$('code').addEventListener('input',()=>{project().html=$('code').value;project().updated=Date.now()});
+$('preview').srcdoc=project().html;$('code').value=project().html;updateHeader();saveWorkspace();updateSummary();
+</script>
+</body>
+</html>
